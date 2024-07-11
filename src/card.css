@@ -60,18 +60,23 @@
   background: crimson;
   margin-left: 0.5rem;
 }
-
+.timeLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.timeLeft>img {
+  width: 20px;
+  margin-right: 0.1rem;
+}
+.timeLeft>span {
+  margin-left: 0.1rem;
+}
 @media (max-width: 439px) {
   .card {
     width: 70px;
     height: 100px !important;
-  }
-  .card {
-    /* width: 70px;
-    height: 100px !important;
-    perspective: 1000px;
-    cursor: pointer;
-    margin: 5px; */
   }
 }
 @media (max-width: 359px) {

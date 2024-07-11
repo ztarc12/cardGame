@@ -11,6 +11,7 @@ function Card() {
   const [matchCards, setMatchCards] = useState([]);
   const [gameStart, setGameStart] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
+  const [showCards, setShowCards] = useState(true)
 
   //카드 섞기
   const suffledCards = () => {
@@ -23,6 +24,7 @@ function Card() {
 
   useEffect(() => {
     suffledCards();
+    setTimeout(()=>setShowCards(false),2000)
   }, []);
 
   //카드 클릭 확인
@@ -68,7 +70,8 @@ function Card() {
     setTimeLeft(60)
     setFlipCards([])
     setMatchCards([])
-    // suffledCards()
+    suffledCards()
+    setShowCards(true);
   }
   
   // 초기화 클릭
@@ -78,6 +81,7 @@ function Card() {
     setFlipCards([])
     setMatchCards([])
     suffledCards()
+    setShowCards(true);
   }
 
   // 성공 여부 확인
@@ -97,7 +101,7 @@ function Card() {
           {
             cards.map((card)=>{
               return(
-                <CardShuffle key={card.id} card={card} cardClick={cardClick} isFlip={gameStart ? flipCards.includes(card.id) : true} isMatch={matchCards.includes(card.id)}/>
+                <CardShuffle key={card.id} card={card} cardClick={cardClick} isFlip={gameStart ? flipCards.includes(card.id) : showCards} isMatch={matchCards.includes(card.id)}/>
               )
             })
           }
@@ -105,6 +109,10 @@ function Card() {
         <div className="btnBox">
           <button className="startBtn" onClick={()=>{startGame()}}>시작하기</button>
           <button className="resetBtn" onClick={()=>{resetGame()}}>초기화</button>
+        </div>
+        <div className="timeLeft">
+          <img src={process.env.PUBLIC_URL+'/images/timeIcon.svg'}></img>
+          <span>{timeLeft}</span>
         </div>
       </div>
     </section>
